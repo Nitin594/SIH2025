@@ -66,7 +66,7 @@ const Navbar = () => {
               className="btn btn-login"
               onClick={() => loginWithRedirect()}
             >
-              Login/Sign-up
+              Login / Sign-up
             </button>
           )}
         </div>

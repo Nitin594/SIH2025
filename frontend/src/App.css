@@ -1,0 +1,14 @@
+html, body {
+  height: 100%;          /* full height */
+  margin: 0;             /* remove default spacing */
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;     /* ensure full viewport height */
+}
+
+main {
+  flex: 1;               /* push footer to bottom */
+}
