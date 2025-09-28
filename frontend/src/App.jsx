@@ -2,7 +2,7 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
-import Achivements from "./pages/Achivements";
+import Achievements from "./pages/Achievements";
 import Contact from "./pages/Contact";
 import Events from "./pages/Events";
 import AuthLayout from "./layouts/AuthLayout";
@@ -24,7 +24,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/events" element={<Events />} />
-            <Route path="/achievements" element={<Achivements />} />
+            <Route path="/achievements" element={<Achievements />} />
             <Route path="/login" element={<Login />} />
           </Route>
         )}

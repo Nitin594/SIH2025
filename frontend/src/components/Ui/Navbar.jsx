@@ -17,50 +17,71 @@ const Navbar = () => {
       <div className="navbar-container">
         <div className="navbar-brand">
           <a href="/" className="navbar-logo">
-            AlumniPlatform
+            Connexta
           </a>
         </div>
 
-        <div className={`navbar-menu ${isMenuOpen ? "is-active" : ""}`}>
-          <ul className="navbar-nav">
-            <li className="nav-item">
-              <a href="/" className="nav-link active">
-                Home
-              </a>
-            </li>
-            <li className="nav-item">
-              <a href="/about" className="nav-link">
-                About
-              </a>
-            </li>
-            <li className="nav-item">
-              <a href="/events" className="nav-link">
-                Events
-              </a>
-            </li>
-            <li className="nav-item">
-              <a href="/achievements" className="nav-link">
-                Achievements
-              </a>
-            </li>
-            <li className="nav-item">
-              <a href="/contact" className="nav-link">
-                Contact
-              </a>
-            </li>
-          </ul>
-        </div>
+        {/* Show navigation menu only for unauthenticated users */}
+        {!isAuthenticated && (
+          <div className={`navbar-menu ${isMenuOpen ? "is-active" : ""}`}>
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <a href="/" className="nav-link active">
+                  Home
+                </a>
+              </li>
+              <li className="nav-item">
+                <a href="/about" className="nav-link">
+                  About
+                </a>
+              </li>
+              <li className="nav-item">
+                <a href="/events" className="nav-link">
+                  Events
+                </a>
+              </li>
+              <li className="nav-item">
+                <a href="/achievements" className="nav-link">
+                  Achievements
+                </a>
+              </li>
+              <li className="nav-item">
+                <a href="/contact" className="nav-link">
+                  Contact
+                </a>
+              </li>
+            </ul>
+          </div>
+        )}
 
         <div className="navbar-actions">
           {isAuthenticated ? (
-            <button
-              className="btn btn-login"
-              onClick={() =>
-                logout({ logoutParams: { returnTo: window.location.origin } })
-              }
-            >
-              Logout
-            </button>
+            <div className="auth-user-section">
+              {/* Profile section for authenticated users */}
+              <div className="user-profile">
+                <img
+                  className="user-avatar"
+                  src={user?.picture}
+                  alt={user?.name}
+                />
+                <div className="user-details">
+                  <span className="user-name">{user?.name}</span>
+                  <span className="user-role">
+                    {user?.role || user?.['custom:role'] || 'Alumni'}
+                  </span>
+                </div>
+              </div>
+              
+              {/* Logout button */}
+              <button
+                className="btn btn-logout"
+                onClick={() =>
+                  logout({ logoutParams: { returnTo: window.location.origin } })
+                }
+              >
+                Logout
+              </button>
+            </div>
           ) : (
             <button
               className="btn btn-login"
@@ -70,29 +91,15 @@ const Navbar = () => {
             </button>
           )}
         </div>
-        {/* <div>
-          {isAuthenticated && (
-            <div className="navbar">
-              <div className="user-info">
-                <img
-                  className="user-avatar"
-                  src={user.picture}
-                  alt={user.name}
-                />
-                <div className="user-details">
-                  <h2 className="user-name">{user.name}</h2>
-                  <p className="user-email">{user.email}</p>
-                </div>
-              </div>
-            </div>
-          )}
-        </div> */}
 
-        <div className="navbar-burger" onClick={toggleMenu}>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
+        {/* Hamburger menu - only show for unauthenticated users */}
+        {!isAuthenticated && (
+          <div className="navbar-burger" onClick={toggleMenu}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        )}
       </div>
     </nav>
   );

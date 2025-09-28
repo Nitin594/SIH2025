@@ -7,11 +7,11 @@ const AuthLayout = () => {
   return (
     <div className="auth-layout">
       <Navbar />
+      <AuthenticatedSidebar />
       <main>
         {/* This is where nested routes (e.g. Dashboard) render */}
         <Outlet />
       </main>
-      <AuthenticatedSidebar />
     </div>
   );
 };

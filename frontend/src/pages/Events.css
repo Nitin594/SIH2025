@@ -1,0 +1,415 @@
+/* AlumniEvents.css */
+
+.alumni-events * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.alumni-events {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f9fa;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 80px 0;
+    text-align: center;
+}
+
+.hero-section h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.hero-section p {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    opacity: 0.9;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+}
+
+.register-btn {
+    padding: 12px 30px;
+    border: 2px solid rgba(255,255,255,0.3);
+    background: transparent;
+    color: white;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.register-btn:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: white;
+}
+
+.view-all-btn {
+    padding: 12px 30px;
+    background: #1f2937;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.view-all-btn:hover {
+    background: #111827;
+    transform: translateY(-1px);
+}
+
+.filter-tabs {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.filter-tab {
+    padding: 10px 20px;
+    background: transparent;
+    color: rgba(255,255,255,0.7);
+    border: none;
+    cursor: pointer;
+    font-size: 0.95rem;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.filter-tab:hover {
+    color: white;
+}
+
+.filter-tab.active {
+    color: white;
+    border-bottom-color: white;
+    font-weight: 600;
+}
+
+/* Events Section */
+.events-section {
+    padding: 80px 0;
+    background: white;
+}
+
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.event-card {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    text-align: center;
+    border: 1px solid #f0f0f0;
+}
+
+.event-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.event-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.event-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #1f2937;
+    font-weight: 600;
+}
+
+.event-card p {
+    color: #6b7280;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.event-datetime {
+    border-top: 1px solid #e5e7eb;
+    padding-top: 20px;
+    margin-top: 20px;
+}
+
+.event-date {
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 5px;
+}
+
+.event-time {
+    color: #6b7280;
+    font-size: 0.95rem;
+}
+
+/* Webinars Section */
+.webinars-section {
+    padding: 80px 0;
+    background: #f9fafb;
+}
+
+.section-header {
+    text-align: left;
+    margin-bottom: 50px;
+    max-width: 500px;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    color: #1f2937;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.section-header p {
+    color: #6b7280;
+    font-size: 1.1rem;
+}
+
+.webinars-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.webinar-card {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    transition: all 0.3s ease;
+    border: 1px solid #f0f0f0;
+}
+
+.webinar-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.webinar-icon {
+    font-size: 2.5rem;
+    flex-shrink: 0;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f3f4f6;
+    border-radius: 12px;
+}
+
+.webinar-content h3 {
+    font-size: 1.4rem;
+    color: #1f2937;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.webinar-content p {
+    color: #6b7280;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.webinar-datetime {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.webinar-date {
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.webinar-time {
+    color: #6b7280;
+}
+
+/* Benefits Section */
+.benefits-section {
+    padding: 80px 0;
+    background: white;
+}
+
+.benefits-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 60px;
+    align-items: start;
+}
+
+.benefits-header h2 {
+    font-size: 2.5rem;
+    color: #1f2937;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.benefits-header p {
+    color: #6b7280;
+    font-size: 1.1rem;
+}
+
+.benefits-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.benefit-item {
+    background: #f9fafb;
+    padding: 25px;
+    border-radius: 12px;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    transition: all 0.3s ease;
+    border: 1px solid #f0f0f0;
+}
+
+.benefit-item:hover {
+    background: white;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    transform: translateY(-2px);
+}
+
+.benefit-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.benefit-content h3 {
+    font-size: 1.3rem;
+    color: #1f2937;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.benefit-content p {
+    color: #6b7280;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.benefit-details {
+    font-size: 0.9rem;
+    color: #9ca3af;
+    font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .events-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .webinar-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .webinar-datetime {
+        justify-content: center;
+    }
+
+    .benefits-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .benefits-header {
+        text-align: center;
+    }
+
+    .benefit-item {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section {
+        padding: 60px 0;
+    }
+
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+
+    .section-header h2,
+    .benefits-header h2 {
+        font-size: 2rem;
+    }
+
+    .event-card,
+    .webinar-card,
+    .benefit-item {
+        padding: 20px;
+    }
+
+    .filter-tabs {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .filter-tab {
+        width: 100%;
+        max-width: 200px;
+        text-align: center;
+    }
+}
