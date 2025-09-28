@@ -1,0 +1,33 @@
+/* .auth-layout{
+    display: grid;
+    grid-template-rows: auto;
+}
+.container {
+  position: relative;
+  left: 280px;
+  top: 70px;
+  height: calc(100vh-70px);
+} */
+/* .container{
+    
+    height: calc(100vh-70px);
+    width: calc(100vw-280px);
+    background-color: red;
+
+} */
+
+.main-container {
+  position: relative;
+  margin-left: calc(280px);  /* space for sidebar */
+  /* margin-top: calc(70px);    space for navbar */
+  padding: 20px;             /* optional inner spacing */
+  border: 3px solid black;
+  max-height: 1240px;
+  height: 100vh;
+}
+@media (max-width: 768px) {
+.main-container{
+    margin-left: 0;
+    padding: 0;
+}
+}

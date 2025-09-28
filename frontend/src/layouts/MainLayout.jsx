@@ -11,7 +11,6 @@ const MainLayout = () => {
         {/* Nested route content will be injected here */}
         <Outlet />
       </main>
-
       <Footer />
     </>
   );

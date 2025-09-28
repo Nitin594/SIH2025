@@ -4,9 +4,9 @@
 .mobile-menu-btn {
   display: none;
   position: fixed;
-  top: 20px;
-  left: 20px;
-  z-index: 1001;
+  right: 20px;
+  bottom: 20px;
+  z-index: 10010;
   background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%);
   color: white;
   border: none;
