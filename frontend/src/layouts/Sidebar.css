@@ -290,9 +290,9 @@
   z-index: 1;
 }
 
-.user-stats {
-  margin-bottom: 1rem;
-}
+/* .user-stats {
+  margin-bottom: 0rem;
+} */
 
 .stats-grid {
   display: grid;
@@ -522,5 +522,212 @@
   .main-content,
   .main-content.sidebar-collapsed {
     margin-left: 0;
+  }
+}
+
+/* Additional CSS for Navigation Features - Add to your existing Sidebar.css */
+
+/* Notification Badge */
+.menu-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  margin-right: 1rem;
+  transition: all 0.3s ease;
+}
+
+.notification-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: #ef4444;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 10px;
+  min-width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  animation: pulse-notification 2s infinite;
+  z-index: 1;
+}
+
+@keyframes pulse-notification {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* Profile Section Hover Effect */
+.profile-section {
+  transition: all 0.3s ease;
+  border-radius: 12px;
+  padding: 0.5rem;
+  margin: -0.5rem;
+}
+
+.profile-section:hover {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+/* Menu Link Button Styling */
+.menu-link {
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.menu-link:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 2px;
+}
+
+/* Active State Enhancement */
+.menu-link.active {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  transform: translateX(2px);
+}
+
+.menu-link.active .menu-icon {
+  color: #fbbf24;
+}
+
+/* Collapsed State Notification Badge */
+.sidebar.collapsed .notification-badge {
+  top: -8px;
+  right: -8px;
+  font-size: 0.6rem;
+  min-width: 16px;
+  height: 16px;
+  padding: 1px 4px;
+}
+
+/* Loading State for Navigation */
+.menu-link.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.menu-link.loading .menu-icon {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Breadcrumb Support (if needed) */
+.breadcrumb-container {
+  padding: 1rem 2rem;
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 1rem;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.breadcrumb-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.breadcrumb-item:not(:last-child)::after {
+  content: '/';
+  color: #d1d5db;
+}
+
+.breadcrumb-item.active {
+  color: #4f46e5;
+  font-weight: 600;
+}
+
+/* Page Transition Support */
+.page-transition-enter {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.page-transition-exit {
+  opacity: 1;
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 300ms, transform 300ms;
+}
+
+/* Responsive Navigation Adjustments */
+@media (max-width: 768px) {
+  .notification-badge {
+    top: -4px;
+    right: -4px;
+    font-size: 0.6rem;
+    min-width: 16px;
+    height: 16px;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .menu-link.active {
+    background: rgba(255, 255, 255, 0.3);
+    border: 2px solid white;
+  }
+  
+  .notification-badge {
+    border: 2px solid white;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .menu-link,
+  .notification-badge,
+  .profile-section {
+    transition: none;
+    animation: none;
+  }
+}
+
+/* Dark Mode Support (if implementing) */
+@media (prefers-color-scheme: dark) {
+  .breadcrumb-container {
+    background: #1f2937;
+    border-bottom-color: #374151;
+  }
+  
+  .breadcrumb {
+    color: #9ca3af;
+  }
+  
+  .breadcrumb-item.active {
+    color: #6366f1;
   }
 }

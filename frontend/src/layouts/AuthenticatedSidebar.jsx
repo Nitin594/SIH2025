@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { 
   User, 
   BarChart3, 
@@ -17,12 +18,20 @@ import {
 import './Sidebar.css';
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [activeItem, setActiveItem] = useState('dashboard');
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [showMobileSidebar, setShowMobileSidebar] = useState(false);
 
   const { user, logout, isAuthenticated } = useAuth0();
+
+  // Update active item based on current route
+  useEffect(() => {
+    const currentPath = location.pathname.substring(1) || 'dashboard';
+    setActiveItem(currentPath);
+  }, [location.pathname]);
 
   // Handle mobile detection
   useEffect(() => {
@@ -39,10 +48,16 @@ const Sidebar = () => {
   }, []);
 
   const handleItemClick = (itemName) => {
-    setActiveItem(itemName);
+    // Navigate to the selected page
+    navigate(`/${itemName}`);
+    
+    // Close mobile sidebar if open
     if (isMobile) {
       setShowMobileSidebar(false);
     }
+
+    // Update URL and browser history
+    window.history.pushState(null, '', `/${itemName}`);
   };
 
   const handleLogout = () => {
@@ -55,26 +70,92 @@ const Sidebar = () => {
 
   const toggleCollapsed = () => {
     setIsCollapsed(!isCollapsed);
+    
+    // Save collapsed state to localStorage
+    localStorage.setItem('sidebarCollapsed', JSON.stringify(!isCollapsed));
   };
 
   const toggleMobileSidebar = () => {
     setShowMobileSidebar(!showMobileSidebar);
   };
 
+  // Load collapsed state from localStorage on mount
+  useEffect(() => {
+    const savedCollapsedState = localStorage.getItem('sidebarCollapsed');
+    if (savedCollapsedState) {
+      setIsCollapsed(JSON.parse(savedCollapsedState));
+    }
+  }, []);
+
   const menuItems = [
-    { id: 'dashboard', name: 'Dashboard', icon: BarChart3, description: 'Overview & Stats' },
-    { id: 'profile', name: 'Profile', icon: User, description: 'Personal Information' },
-    { id: 'discussion', name: 'Discussion', icon: MessageSquare, description: 'Community Chat' },
-    { id: 'events', name: 'Events', icon: Calendar, description: 'Upcoming Events' },
-    { id: 'mentorship', name: 'Mentorship', icon: Target, description: 'Connect & Guide' },
-    { id: 'achievements', name: 'Achievements', icon: Award, description: 'Your Milestones' },
-    { id: 'donation', name: 'Donation', icon: Heart, description: 'Support Alumni' },
-    { id: 'notifications', name: 'Notifications', icon: Bell, description: 'Recent Updates' },
-    { id: 'settings', name: 'Settings', icon: Settings, description: 'Preferences' }
+    { 
+      id: 'dashboard', 
+      name: 'Dashboard', 
+      icon: BarChart3, 
+      description: 'Overview & Stats',
+      path: '/dashboard' 
+    },
+    { 
+      id: 'profile', 
+      name: 'Profile', 
+      icon: User, 
+      description: 'Personal Information',
+      path: '/profile' 
+    },
+    { 
+      id: 'discussion', 
+      name: 'Discussion', 
+      icon: MessageSquare, 
+      description: 'Community Chat',
+      path: '/discussion' 
+    },
+    { 
+      id: 'events', 
+      name: 'Events', 
+      icon: Calendar, 
+      description: 'Upcoming Events',
+      path: '/events' 
+    },
+    { 
+      id: 'mentorship', 
+      name: 'Mentorship', 
+      icon: Target, 
+      description: 'Connect & Guide',
+      path: '/mentorship' 
+    },
+    { 
+      id: 'achievements', 
+      name: 'Achievements', 
+      icon: Award, 
+      description: 'Your Milestones',
+      path: '/achievements' 
+    },
+    { 
+      id: 'donation', 
+      name: 'Donation', 
+      icon: Heart, 
+      description: 'Support Alumni',
+      path: '/donation' 
+    },
+    { 
+      id: 'notifications', 
+      name: 'Notifications', 
+      icon: Bell, 
+      description: 'Recent Updates',
+      path: '/notifications',
+      badge: 3 // Example notification count
+    },
+    { 
+      id: 'settings', 
+      name: 'Settings', 
+      icon: Settings, 
+      description: 'Preferences',
+      path: '/settings' 
+    }
   ];
 
   if (!isAuthenticated) {
-    return null; // Don't show sidebar if not authenticated
+    return null;
   }
 
   return (
@@ -124,7 +205,12 @@ const Sidebar = () => {
             )}
           </div>
 
-          <div className="profile-section">
+          <div 
+            className="profile-section"
+            onClick={() => handleItemClick('profile')}
+            style={{ cursor: 'pointer' }}
+            title="Go to Profile"
+          >
             <div className="profile-photo">
               <img 
                 src={user?.picture || `https://ui-avatars.com/api/?name=${encodeURIComponent(user?.name || 'User')}&background=4f46e5&color=ffffff&size=160`}
@@ -160,19 +246,24 @@ const Sidebar = () => {
             <ul className="menu-list">
               {menuItems.map((item) => {
                 const IconComponent = item.icon;
+                const isActive = activeItem === item.id || location.pathname === item.path;
+                
                 return (
                   <li key={item.id} className="menu-item">
-                    <a
-                      href={`/${item.id}`}
-                      className={`menu-link ${activeItem === item.id ? 'active' : ''}`}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        handleItemClick(item.id);
-                      }}
+                    <button
+                      className={`menu-link ${isActive ? 'active' : ''}`}
+                      onClick={() => handleItemClick(item.id)}
                       title={isCollapsed ? item.name : ''}
+                      aria-current={isActive ? 'page' : undefined}
                     >
                       <span className="menu-icon">
                         <IconComponent size={20} />
+                        {/* Notification Badge */}
+                        {item.badge && item.badge > 0 && (
+                          <span className="notification-badge">
+                            {item.badge > 99 ? '99+' : item.badge}
+                          </span>
+                        )}
                       </span>
                       {!isCollapsed && (
                         <div className="menu-content">
@@ -180,8 +271,8 @@ const Sidebar = () => {
                           <span className="menu-description">{item.description}</span>
                         </div>
                       )}
-                      {activeItem === item.id && <div className="active-indicator"></div>}
-                    </a>
+                      {isActive && <div className="active-indicator"></div>}
+                    </button>
                   </li>
                 );
               })}
