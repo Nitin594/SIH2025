@@ -1,5 +1,10 @@
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Achievements from "./pages/Achievements";
@@ -10,6 +15,7 @@ import MainLayout from "./layouts/MainLayout";
 import Dashboard from "./Alumni/Dashboard";
 import { useAuth0 } from "@auth0/auth0-react";
 import Login from "./components/Auth/Login";
+import ProfileForm from "./components/Auth/ProfileForm";
 
 function App() {
   const { isAuthenticated } = useAuth0();
@@ -25,7 +31,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/events" element={<Events />} />
             <Route path="/achievements" element={<Achievements />} />
-            <Route path="/login" element={<Login />} />
+            {/* <Route path="/login" element={<Login />} /> */}
           </Route>
         )}
 
@@ -33,12 +39,21 @@ function App() {
         {isAuthenticated && (
           <Route element={<AuthLayout />}>
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route
+              path="/complete-profile"
+              element={
+                isAuthenticated ? <ProfileForm/> : <Navigate to="/dashboard" />
+              }
+            />
             {/* You can add more protected routes here */}
           </Route>
         )}
 
         {/* 🚦 Redirect any unknown routes */}
-        <Route path="*" element={<Navigate to={isAuthenticated ? "/dashboard" : "/"} />} />
+        <Route
+          path="*"
+          element={<Navigate to={isAuthenticated ? "/dashboard" : "/"} />}
+        />
       </Routes>
     </Router>
   );
