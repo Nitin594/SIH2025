@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Achievements = () => {
+const AlumniAchievements = () => {
   return (
     <div>
-      
+      <h1>achievements</h1>
     </div>
   )
 }
 
-export default Achievements
+export default AlumniAchievements

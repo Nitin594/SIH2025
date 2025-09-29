@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Events = () => {
+const AlumniEvents = () => {
   return (
     <div>
-      
+      <h1>Events</h1>
     </div>
   )
 }
 
-export default Events
+export default AlumniEvents
