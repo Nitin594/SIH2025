@@ -16,6 +16,17 @@ import Dashboard from "./Alumni/Dashboard";
 import { useAuth0 } from "@auth0/auth0-react";
 import Login from "./components/Auth/Login";
 import ProfileForm from "./components/Auth/ProfileForm";
+<<<<<<< HEAD
+=======
+import Profile from "./Alumni/Profile";
+import Discussions from "./Alumni/Discussions";
+import AlumniEvents from "./Alumni/Events";
+import Mentorships from "./Alumni/Mentorships";
+import AlumniAchievements from "./Alumni/Achievements";
+import Donation from "./Alumni/Donation";
+import Notifications from "./Alumni/Notifications";
+import Settings from "./Alumni/Settings";
+>>>>>>> 2248dbd0872ccfe64eb3e8ad69d00c6dbba0ddee
 
 function App() {
   const { isAuthenticated } = useAuth0();
@@ -39,21 +50,40 @@ function App() {
         {isAuthenticated && (
           <Route element={<AuthLayout />}>
             <Route path="/dashboard" element={<Dashboard />} />
+<<<<<<< HEAD
             <Route
               path="/complete-profile"
               element={
                 isAuthenticated ? <ProfileForm/> : <Navigate to="/dashboard" />
               }
             />
+=======
+            <Route path="/complete-profile" element={<ProfileForm />} />
+            <Route path="/profile" element={<Profile/>}/>
+            <Route path="/discussion" element={<Discussions/>}/>
+            <Route path="/events" element={<AlumniEvents/>}/>
+            <Route path="/mentorship" element={<Mentorships/>}/>
+            <Route path="/achievements" element={<AlumniAchievements/>}/>
+            <Route path="/donation" element={<Donation/>}/>
+            <Route path="/notifications" element={<Notifications/>}/>
+            <Route path="/settings" element={<Settings/>}/>
+>>>>>>> 2248dbd0872ccfe64eb3e8ad69d00c6dbba0ddee
             {/* You can add more protected routes here */}
           </Route>
         )}
 
         {/* 🚦 Redirect any unknown routes */}
+<<<<<<< HEAD
         <Route
           path="*"
           element={<Navigate to={isAuthenticated ? "/dashboard" : "/"} />}
         />
+=======
+        {/* <Route
+          path="*"
+          element={<Navigate to={isAuthenticated ? "/dashboard" : "/"} />}
+        /> */}
+>>>>>>> 2248dbd0872ccfe64eb3e8ad69d00c6dbba0ddee
       </Routes>
     </Router>
   );

@@ -64,7 +64,7 @@
 
 /* Header Section */
 .sidebar-header {
-  padding: 2rem 1.5rem;
+  padding: 1.25rem 1rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   position: relative;
   z-index: 1;
@@ -183,6 +183,7 @@
 /* Menu Section */
 .sidebar-menu {
   flex: 1;
+  min-height: 0; /* allow flex child to grow and scroll, expanding available space */
   padding: 1rem 0;
   overflow-y: auto;
   position: relative;
@@ -284,7 +285,7 @@
 
 /* Footer Section */
 .sidebar-footer {
-  padding: 1.5rem;
+  padding: 1rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   position: relative;
   z-index: 1;
@@ -293,6 +294,9 @@
 /* .user-stats {
   margin-bottom: 0rem;
 } */
+
+/* Hide stats to free space for the navigation list; re-enable if needed */
+.user-stats { display: none; }
 
 .stats-grid {
   display: grid;

@@ -96,6 +96,13 @@ const Sidebar = () => {
       path: '/dashboard' 
     },
     { 
+      id: 'complete-profile', 
+      name: 'Complete Profile', 
+      icon: User, 
+      description: 'Finish your profile setup',
+      path: '/complete-profile' 
+    },
+    { 
       id: 'profile', 
       name: 'Profile', 
       icon: User, 
